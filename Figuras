@@ -1,0 +1,149 @@
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+class Figura {
+protected:
+    string nombre;
+public:
+    void setNombre(string n) {
+        nombre = n;
+    }
+    string getNombre() {
+        return nombre;
+    }
+    virtual double calcularVolumen() = 0; // Método abstracto
+};
+
+// CUBO
+class Cubo : public Figura {
+private:
+    double arista;
+public:
+    void setDatos(double a) {
+        arista = a;
+    }
+    double calcularVolumen() {
+        return arista * arista * arista;
+    }
+};
+
+// CILINDRO
+class Cilindro : public Figura {
+private:
+    double radio, altura;
+public:
+    void setDatos(double r, double h) {
+        radio = r;
+        altura = h;
+    }
+    double calcularVolumen() {
+        return 3.1416 * radio * radio * altura;
+    }
+};
+
+// CONO
+class Cono : public Figura {
+private:
+    double radio, altura;
+public:
+    void setDatos(double r, double h) {
+        radio = r;
+        altura = h;
+    }
+    double calcularVolumen() {
+        return (3.1416 * radio * radio * altura) / 3;
+    }
+};
+
+// ESFERA
+class Esfera : public Figura {
+private:
+    double radio;
+public:
+    void setDatos(double r) {
+        radio = r;
+    }
+    double calcularVolumen() {
+        return (4.0 / 3.0) * 3.1416 * pow(radio, 3);
+    }
+};
+
+int main() {
+    int opcion;
+
+    do {
+        cout << "\nAREAS FIGURAS GEOMETRICAS:\n";
+        cout << "1. CUBO\n";
+        cout << "2. CILINDRO\n";
+        cout << "3. CONO\n";
+        cout << "4. ESFERA\n";
+        cout << "5. FIN\n";
+        cout << "ESCOGER OPCION: ";
+        cin >> opcion;
+
+        if (opcion == 1) {
+            Cubo cubo;
+            string nombre;
+            double arista;
+            cout << "Arista: ";
+            cin >> arista;
+
+            cubo.setNombre(nombre);
+            cubo.setDatos(arista);
+
+            cout << "Figura: " << cubo.getNombre() << endl;
+            cout << "Volumen: " << cubo.calcularVolumen() << endl;
+        }
+        else if (opcion == 2) {
+            Cilindro cilindro;
+            string nombre;
+            double r, h;
+            cout << "Radio: ";
+            cin >> r;
+            cout << "Altura: ";
+            cin >> h;
+
+            cilindro.setNombre(nombre);
+            cilindro.setDatos(r, h);
+
+            cout << "Figura: " << cilindro.getNombre() << endl;
+            cout << "Volumen: " << cilindro.calcularVolumen() << endl;
+        }
+        else if (opcion == 3) {
+            Cono cono;
+            string nombre;
+            double r, h;
+            cout << "Radio: ";
+            cin >> r;
+            cout << "Altura: ";
+            cin >> h;
+
+            cono.setNombre(nombre);
+            cono.setDatos(r, h);
+
+            cout << "Figura: " << cono.getNombre() << endl;
+            cout << "Volumen: " << cono.calcularVolumen() << endl;
+        }
+        else if (opcion == 4) {
+            Esfera esfera;
+            string nombre;
+            double r;
+            cout << "Radio: ";
+            cin >> r;
+
+            esfera.setNombre(nombre);
+            esfera.setDatos(r);
+
+            cout << "Figura: " << esfera.getNombre() << endl;
+            cout << "Volumen: " << esfera.calcularVolumen() << endl;
+        }
+        else if (opcion != 5) {
+            cout << "Opción inválida. Intenta de nuevo.\n";
+        }
+
+    } while (opcion != 5);
+
+    cout << "Programa finalizado.\n";
+    return 0;
+}
